@@ -1,0 +1,49 @@
+/* Campos editables del acta de compromiso. */
+#actaCondicionamiento { font-family: Arial, Helvetica, sans-serif; font-size: 12pt; line-height: 1.15; }
+#actaCondicionamiento input { font: inherit; text-align: center; max-width: 100%; height: auto; min-height: 1.2em; }
+#actaCondicionamiento input.auto-llenado { color: #0b3fd1; font-weight: 600; }
+#actaCondicionamiento input[readonly] { cursor: default; }
+#actaCondicionamiento [hidden] { display: none !important; }
+#actaCondicionamiento .firmas-coordinacion { display: block; margin-top: 35px; text-align: center; break-inside: avoid; }
+#actaCondicionamiento .firmas-coordinacion > div { width: 100%; }
+#actaCondicionamiento .firmas-coordinacion input { width: 360px; margin-bottom: 12px; }
+#actaCondicionamiento .firmas-finales { margin-top: 35px; gap: 30px; break-inside: avoid; }
+#actaCondicionamiento .firmas-finales > div { width: 48%; text-align: center; }
+#actaCondicionamiento .firmas-finales input { width: 100%; margin-top: 18px; }
+.valor-impreso { display: none; }
+.barra { flex-wrap: wrap; }
+.barra .acciones, .barra .identificador-panel { position: static; }
+.barra .acciones { flex-wrap: wrap; justify-content: center; }
+@page { size: letter portrait; margin: 10mm 12mm; }
+@media print {
+  html, body { margin: 0; padding: 0; background: white; }
+  .no-imprimir { display: none !important; }
+  .vista-acta { margin: 0; padding: 0; overflow: visible; }
+  #actaCondicionamiento.hoja-carta { width: 100%; min-height: 0; margin: 0; padding: 0; box-shadow: none; font: 11pt/1.28 Arial, sans-serif; }
+  #actaCondicionamiento input { display: none !important; }
+  #actaCondicionamiento .valor-impreso { display: inline; border-bottom: 1px solid black; padding: 0 3px; overflow-wrap: anywhere; white-space: pre-wrap; color: black; }
+  #actaCondicionamiento .encabezado-acta { margin-bottom: 12px; gap: 22px; }
+  #actaCondicionamiento .encabezado-acta img { height: 70px; width: auto; }
+  #actaCondicionamiento h1 { font-size: 17pt; margin-bottom: 8px; }
+  #actaCondicionamiento h2 { font-size: 14pt; }
+  #actaCondicionamiento li { margin: 6px 0; break-inside: avoid; }
+  #actaCondicionamiento .cierre { margin: 18px 0 0; }
+  #actaCondicionamiento .firmas-coordinacion { margin-top: 32px; }
+  #actaCondicionamiento .firmas-finales { margin-top: 28px; }
+  #actaCondicionamiento .firmas-coordinacion .valor-impreso,
+  #actaCondicionamiento .firmas-finales .valor-impreso { display: block; margin: 14px auto 5px; width: 100%; text-align: center; }
+}
+
+/* Edición por fragmentos sin alterar campos ni estructura. */
+#actaCondicionamiento .firmas-coordinacion { max-width: 440px; margin-left: auto; margin-right: auto; }
+#actaCondicionamiento .firmas-finales { justify-content: center; gap: 50px; margin-left: 20px; margin-right: 20px; }
+#fichaConsulta .fo-firmas > div { text-align: center; }
+@media print {
+  #actaCondicionamiento.hoja-carta { min-height: 254mm; display: flex; flex-direction: column; }
+  #actaCondicionamiento .firmas-coordinacion { margin-top: auto; padding-top: 14px; width: 75%; }
+  #actaCondicionamiento .firmas-finales { margin-bottom: 14px; }
+  #actaCondicionamiento [data-texto-acta] { outline: none; background: transparent; overflow-wrap: anywhere; }
+}
+#actaCondicionamiento [data-texto-acta] { white-space: normal; }
+
+
