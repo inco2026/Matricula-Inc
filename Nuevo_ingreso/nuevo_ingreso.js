@@ -1,6 +1,5 @@
 import { iniciarBuscadorCentros, esCentroCatalogado } from './buscador-centros.js?v=2';
-import { iniciarPaisNacimiento, nacimientoParaGuardar } from './pais-nacimiento.mjs';
-import { iniciarBuscadorNacimiento, validarLugarNacimiento } from './buscador-nacimiento.js?v=4';
+import { iniciarBuscadorNacimiento, validarLugarNacimiento } from './buscador-nacimiento.js?v=5';
 import { iniciarBorrador } from './borrador.mjs?v=5';
 import { descargarComprobantePDF as descargarPDFCompleto } from './comprobante-pdf.js';
 import { TELEFONOS_SV } from './telefonos-sv.js?v=2';
@@ -16,7 +15,6 @@ import {
 ========================================================= */
 const form = document.getElementById("matriculaForm");
 iniciarBuscadorNacimiento();
-iniciarPaisNacimiento();
 iniciarBuscadorCentros();
 const mensajeExito = document.getElementById("mensajeExito");
 
@@ -233,7 +231,6 @@ function campoAplicable(el) {
 
 function validarContenido(el, valor) {
   if (el.id === 'colegioAnterior' && esCentroCatalogado(valor)) return '';
-  if (el.id === 'nacimientoExtranjero') return errorTextoDescriptivo(valor, { maximo: 100 });
   const duplicadoIdentidad = errorDuplicadoContacto(el, valor);
   if (duplicadoIdentidad) return duplicadoIdentidad;
   if (el.id === 'especialidad' && grado?.value === 'Tercer Año' && valor === 'Bachillerato General') return 'Bachillerato General no está disponible para Tercer Año.';
@@ -1607,8 +1604,7 @@ if (form) {
       }
     });
 
-    data.lugarNacimiento = nacimientoParaGuardar();
-    data.paisNacimiento = document.getElementById('paisNacimiento').selectedOptions[0].text;
+    data.lugarNacimiento = document.getElementById('lugarNacimiento').value;
 
     // Hermanos: se arman como lista de objetos { nombre, grado }
     const tieneHermanos = formData.get('hermanosCentroeducativo') === 'Sí';

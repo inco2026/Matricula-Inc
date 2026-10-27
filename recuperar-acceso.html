@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recuperar contraseña · INCO</title>
+  <link rel="stylesheet" href="style.css?v=20261027-acceso2">
+</head>
+<body>
+  <main class="pantalla-login">
+    <section class="card-login">
+      <h1>Recuperar contraseña</h1>
+      <p id="instruccion">Escribe el correo registrado en tu cuenta. Te enviaremos un código para crear una nueva contraseña.</p>
+      <form id="solicitar" class="admin-login">
+        <label for="correo">Correo electrónico</label>
+        <input id="correo" type="email" autocomplete="email" maxlength="254" required>
+        <button class="btn-ingreso btn-admin" type="submit">Enviar código</button>
+      </form>
+      <form id="verificar" class="admin-login" hidden>
+        <label for="codigo">Código recibido por correo</label>
+        <input id="codigo" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6,10}" maxlength="10" required>
+        <button class="btn-ingreso btn-admin" type="submit">Verificar código</button>
+        <button id="otro-correo" type="button">Cambiar correo o solicitar otro código</button>
+      </form>
+      <form id="cambiar" class="admin-login" hidden>
+        <label for="nueva">Nueva contraseña (mínimo 8 caracteres)</label>
+        <div class="campo-contrasena">
+          <input id="nueva" type="password" autocomplete="new-password" minlength="8" maxlength="128" required>
+          <button type="button" data-ver-clave="nueva" aria-label="Mostrar contraseña" aria-pressed="false">👁 <span>Mostrar</span></button>
+        </div>
+        <label for="confirmar">Repite la nueva contraseña</label>
+        <input id="confirmar" type="password" autocomplete="new-password" minlength="8" maxlength="128" required>
+        <button class="btn-ingreso btn-admin" type="submit">Guardar nueva contraseña</button>
+      </form>
+      <p id="estado" class="mensaje-login" role="status" aria-live="polite"></p>
+      <p>Si no recuerdas tu correo o ya no tienes acceso a él, solicita ayuda a la administración del instituto.</p>
+      <a class="ayuda-acceso" href="administrador.html">Volver al acceso del personal</a>
+    </section>
+  </main>
+  <script defer src="ver-contrasena.js"></script>
+  <script type="module" src="recuperar-acceso.js"></script>
+</body>
+</html>

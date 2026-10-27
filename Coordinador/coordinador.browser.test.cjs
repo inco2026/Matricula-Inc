@@ -35,6 +35,9 @@ test('Coordinador: docente responsable y autollenado Arial 12 centrado',async()=
   const estilos=await page.locator('#actaAlumno').evaluate(el=>({fuente:getComputedStyle(el).fontFamily,tamano:getComputedStyle(el).fontSize,alineacion:getComputedStyle(el).textAlign}));
   assert.match(estilos.fuente,/Arial/);assert.equal(estilos.tamano,'16px');assert.equal(estilos.alineacion,'center');
   assert.equal(await page.locator('#actaMadre').inputValue(),'X');
+  assert.equal(await page.locator('#actaAlumno').evaluate(e=>getComputedStyle(e).color),'rgb(0, 0, 0)');
+  assert.equal(await page.locator('#actaAlumno').evaluate(e=>getComputedStyle(e).fontWeight),'700');
+  assert.match(await page.locator('#actaCondicionamiento ol').textContent(),/señoritas no tintes/);
   assert.equal(await page.locator('#actaNombreCoordinador').inputValue(),'Alvaro francisco Solorzano Deodanes');
   assert.equal(await page.locator('#actaCondicionamiento ol li').count(),13);
   assert.equal(await page.locator('#fichaConsulta .fo-logo').evaluate(el=>el.complete && el.naturalWidth > 0),true);

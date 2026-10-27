@@ -78,7 +78,8 @@ const lugaresAnteriores = {
 
 export function iniciarBuscadorNacimiento() {
   const input = document.getElementById("lugarNacimiento");
-  if (!input) return;
+  if (!input || input.dataset.buscadorIniciado) return;
+  input.dataset.buscadorIniciado = "true";
   const departamento = document.getElementById('departamentoNacimiento');
   if (departamento) {
     const departamentos = ['Ahuachapán','Santa Ana','Sonsonate','Chalatenango','La Libertad','San Salvador','Cuscatlán','La Paz','Cabañas','San Vicente','Usulután','San Miguel','Morazán','La Unión'];

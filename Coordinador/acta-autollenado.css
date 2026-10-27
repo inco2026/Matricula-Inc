@@ -1,7 +1,7 @@
 /* Campos editables del acta de compromiso. */
 #actaCondicionamiento { font-family: Arial, Helvetica, sans-serif; font-size: 12pt; line-height: 1.15; }
 #actaCondicionamiento input { font: inherit; text-align: center; max-width: 100%; height: auto; min-height: 1.2em; }
-#actaCondicionamiento input.auto-llenado { color: #0b3fd1; font-weight: 600; }
+#actaCondicionamiento input.auto-llenado { color: #000; font-weight: 700; }
 #actaCondicionamiento input[readonly] { cursor: default; }
 #actaCondicionamiento [hidden] { display: none !important; }
 #actaCondicionamiento .firmas-coordinacion { display: block; margin-top: 35px; text-align: center; break-inside: avoid; }
@@ -26,7 +26,7 @@
   #actaCondicionamiento .encabezado-acta img { height: 70px; width: auto; }
   #actaCondicionamiento h1 { font-size: 17pt; margin-bottom: 8px; }
   #actaCondicionamiento h2 { font-size: 14pt; }
-  #actaCondicionamiento li { margin: 6px 0; break-inside: avoid; }
+  #actaCondicionamiento li { margin: 4px 0; break-inside: avoid; }
   #actaCondicionamiento .cierre { margin: 18px 0 0; }
   #actaCondicionamiento .firmas-coordinacion { margin-top: 32px; }
   #actaCondicionamiento .firmas-finales { margin-top: 28px; }
@@ -46,4 +46,13 @@
 }
 #actaCondicionamiento [data-texto-acta] { white-space: normal; }
 
+
+
+/* Datos del acta legibles tanto en pantalla como en papel. */
+#actaCondicionamiento input { color: #000; font-weight: 700; }
+#actaCondicionamiento .valor-impreso { color: #000; font-weight: 700; }
+@media print {
+  #actaCondicionamiento .encabezado-acta { break-inside: avoid; overflow: visible; flex-shrink: 0; }
+  #actaCondicionamiento .encabezado-acta img { width: 20mm; height: 22mm; max-height: none; object-fit: contain; flex-shrink: 0; display: block; }
+}
 

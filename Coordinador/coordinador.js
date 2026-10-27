@@ -461,8 +461,16 @@ $("buscarMatriculaCoordinador").addEventListener("submit", async (evento) => {
   }
 });
 
-window.imprimirActa = function () {
-  if (accesoCoordinador) window.print();
+window.imprimirActa = async function () {
+  if (!accesoCoordinador) return;
+  try {
+    await document.fonts.ready;
+    await Promise.all([...document.querySelectorAll("#actaCondicionamiento img")].map(img => img.decode()));
+    prepararImpresion();
+    window.print();
+  } catch {
+    $("estadoConsulta").textContent = "No se pudo cargar el escudo para imprimir. Recargue la página e inténtelo de nuevo.";
+  }
 };
 
 window.cerrarSesion = cerrarSesionSupabase;

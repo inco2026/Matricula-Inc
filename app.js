@@ -210,13 +210,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 // el CDN de Supabase no estén disponibles. Por eso cargamos el
                 // cliente únicamente al intentar iniciar sesión.
                 const { supabase } = await import('./supabase-config.js');
-                const { data: acceso, error: errorAcceso } = await supabase.functions.invoke('crear-usuario', {
-                    body: { accion: 'ingresar', nombre, contrasena: clave },
-                });
+                let acceso, errorAcceso;
+                if (nombre.includes('@')) {
+                    const resultado = await supabase.auth.signInWithPassword({ email: nombre, password: clave });
+                    acceso = { ok: !resultado.error, session: resultado.data?.session };
+                    errorAcceso = resultado.error;
+                } else {
+                    const resultado = await supabase.functions.invoke('crear-usuario', {
+                        body: { accion: 'ingresar', nombre, contrasena: clave },
+                    });
+                    acceso = resultado.data;
+                    errorAcceso = resultado.error;
+                }
                 if (errorAcceso) {
                     let detalle = '';
                     try { detalle = (await errorAcceso.context?.clone().json())?.error || ''; } catch {}
-                    throw new Error(detalle || 'No se pudo comprobar el nombre y la contraseña.');
+                    throw new Error(detalle || errorAcceso.message || 'No se pudo comprobar el nombre o correo y la contraseña.');
                 }
                 if (!acceso?.ok || !acceso.session?.access_token || !acceso.session?.refresh_token) {
                     throw new Error('Falta actualizar la función de ingreso por nombre en Supabase.');
@@ -257,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } catch (error) {
                 const errorDeConexion = /failed to fetch|dynamically imported module/i.test(error.message || '');
                 mensajeAdmin.textContent = error.message === 'Invalid login credentials'
-                    ? 'Nombre o contraseña incorrectos.'
+                    ? 'Nombre, correo o contraseña incorrectos.'
                     : errorDeConexion
                         ? 'No se pudo conectar con Supabase. Revise su conexión a Internet y vuelva a intentar.'
                         : `No se pudo iniciar sesión: ${error.message}`;

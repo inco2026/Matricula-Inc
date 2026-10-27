@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Administrador - Sistema de Matrícula INCO</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20261027-acceso2">
 
   <style>
     #bienvenidaAdministrador {
@@ -27,9 +27,9 @@
       font-size: 1.125rem; color: #284b39; text-align: left;
     }
     #bienvenidaAdministrador .texto-institucional { line-height: 1.8; font-weight: 400; }
-    #bienvenidaAdministrador .lista-carreras { display: block; list-style: disc; padding-left: 20px; margin-top: 16px; }
-    #bienvenidaAdministrador .lista-carreras li { font-weight: 600; line-height: 1.65; padding: 9px 0 9px 3px; }
-    #bienvenidaAdministrador .lista-carreras li::marker { color: #287249; }
+    #bienvenidaAdministrador .lista-carreras { display: block; list-style: none; padding-left: 0; margin-top: 16px; }
+    #bienvenidaAdministrador .lista-carreras li { position: relative; font-weight: 600; line-height: 1.65; padding: 9px 0 9px 26px; }
+    #bienvenidaAdministrador .lista-carreras li::before { content: ""; position: absolute; left: 0; top: calc(9px + .3em); width: 16px; height: 16px; background: url('./img/vineta-onda.svg') center / contain no-repeat; }
     @media (max-width: 520px) {
       #bienvenidaAdministrador { padding: 20px 16px; }
       #bienvenidaAdministrador h3 { font-size: 1.85rem; }
@@ -63,7 +63,7 @@
 
       <div class="opciones-ingreso">
         <button type="button" class="btn-ingreso btn-admin" id="btnAdministrador">
-          Administrador
+          Acceso del personal
         </button>
       </div>
 
@@ -78,13 +78,16 @@
       <p class="modal-subtitulo">Administradores, coordinadores y docentes</p>
 
       <form class="admin-login" id="formAdministrador" novalidate>
-        <label for="usuarioAdmin">Nombre completo</label>
-        <input type="text" id="usuarioAdmin" name="usuario" placeholder="Escriba su nombre completo" maxlength="80" autocomplete="username" required>
+        <label for="usuarioAdmin">Nombre completo o correo electrónico</label>
+        <input type="text" id="usuarioAdmin" name="usuario" placeholder="Escriba su nombre o correo" maxlength="254" autocomplete="username" required>
 
         <label for="passwordAdmin">Contraseña</label>
-        <input type="password" id="passwordAdmin" name="password" autocomplete="current-password" required>
+        <div class="campo-contrasena">
+          <input type="password" id="passwordAdmin" name="password" autocomplete="current-password" required>
+          <button type="button" data-ver-clave="passwordAdmin" aria-label="Mostrar contraseña" aria-pressed="false">👁 <span>Mostrar</span></button>
+        </div>
 
-        <p class="mensaje-login" id="mensajeAdmin"></p>
+        <p class="mensaje-login" id="mensajeAdmin" role="status" aria-live="polite"></p>
 
         <button type="submit" class="btn-ingreso btn-admin">Acceder</button>
       </form>
@@ -92,6 +95,7 @@
     </div>
   </div>
 
-  <script defer src="app.js?v=20261026-nombre1"></script>
+  <script defer src="app.js?v=20261027-acceso4"></script>
+  <script defer src="ver-contrasena.js"></script>
 </body>
 </html>

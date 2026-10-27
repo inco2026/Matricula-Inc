@@ -425,6 +425,20 @@ body::after {
   text-align: left;
 }
 
+.admin-login[hidden] { display: none; }
+.campo-contrasena { display: flex; align-items: stretch; gap: 6px; }
+.campo-contrasena input { flex: 1; min-width: 0; width: 100%; }
+.campo-contrasena button, #otro-correo {
+  padding: 10px; min-height: 44px; border: 1px solid #a7b6ad;
+  border-radius: 10px; background: #fff; color: #194e36; cursor: pointer;
+  font: inherit;
+}
+.ayuda-acceso { display: inline-block; padding: 12px 0; color: #194e36; text-decoration: underline; }
+.admin-login button:disabled { opacity: .65; cursor: wait; }
+.campo-contrasena button:focus-visible, .ayuda-acceso:focus-visible, #otro-correo:focus-visible {
+  outline: 3px solid #a87900; outline-offset: 3px;
+}
+
 .admin-login label {
   font-size: 0.9rem;
   font-weight: 700;
