@@ -1,0 +1,39 @@
+/* Ficha oficial: papel carta, tipografía y medidas independientes del panel. */
+@page { size: letter portrait; margin: 8mm; }
+.fo-carta, .fo-carta * { box-sizing: border-box; }
+.ficha-oficial.fo-carta { width: 199.9mm; max-width: 100%; margin: 0 auto; padding: 0; background: #fff; color: #202923; font-family: Arial, Helvetica, sans-serif; font-size: 9pt; line-height: 1.24; }
+.fo-carta p { font: inherit; margin: 0; }
+.fo-carta .fo-encabezado { display: grid; grid-template-columns: 22mm 1fr 26mm; gap: 3mm; align-items: center; min-height: 31mm; text-align: center; margin-bottom: 2mm; }
+.fo-carta .fo-escudo { width: 21mm; height: 25mm; object-fit: contain; }
+.fo-carta .fo-encabezado h1 { font-size: 12pt; line-height: 1.15; margin: 2mm 0; color: #254f3c; }
+.fo-carta .fo-encabezado strong { font-size: 10pt; }
+.fo-carta .fo-retrato { border: 1px solid #617268; width: 25mm; height: 35mm; display: flex; align-items: center; justify-content: center; font-size: 9pt; }
+.fo-carta .fo-retrato img { width: 100%; height: 100%; object-fit: cover; }
+.fo-carta .fo-metadatos { display: flex; justify-content: space-between; align-items: center; gap: 8mm; margin-bottom: 4mm; min-height: 8mm; }
+.fo-carta .fo-metadatos > div { border: 1px solid #607266; padding: 2mm; }
+.fo-carta .fo-metadatos b { padding: 0 2mm; }
+.fo-carta .fo-ficha-numero { min-width: 39mm; text-align: center; }
+.fo-carta .fo-marco { border: 1px solid #607266; }
+.fo-carta .fo-banda { margin: 0; padding: 1mm 1.6mm; font: bold 9pt Arial, sans-serif; color: #fff; background: #426653; border-top: 1px solid #607266; border-bottom: 1px solid #607266; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+.fo-carta .fo-banda:first-child { border-top: 0; }
+.fo-carta .fo-renglon { display: flex; flex-wrap: wrap; align-items: baseline; gap: .7mm 3mm; padding: .4mm 1.8mm; }
+.fo-carta .fo-campo { display: inline; overflow-wrap: anywhere; }
+.fo-carta .fo-campo b { font-weight: 600; border-bottom: .2mm solid #9ba89f; padding: 0 .6mm; }
+.fo-carta .fo-nombres { display: grid; grid-template-columns: repeat(4,1fr); padding: 1mm 1.8mm; gap: 3mm; }
+.fo-carta .fo-nombres div { text-align: center; }
+.fo-carta .fo-nombres b { display: block; min-height: 5mm; border-bottom: 1px solid #8c9c91; font-size: 10pt; overflow-wrap: anywhere; }
+.fo-carta .fo-nombres span { font-size: 8pt; }
+.fo-carta .fo-nota { padding: .5mm 1.8mm 1mm; font-size: 8pt; }
+.fo-carta .fo-padres { display: grid; grid-template-columns: 1fr 1fr; }
+.fo-carta .fo-progenitor { padding: 1mm; min-width: 0; }
+.fo-carta .fo-progenitor + .fo-progenitor { border-left: 1px solid #607266; }
+.fo-carta .fo-nombre-padre { display: block; min-height: 4mm; text-align: center; text-decoration: underline; }
+.fo-carta .fo-parentesco { text-align: center; font-size: 8pt; }
+.fo-carta .fo-progenitor .fo-renglon { padding: .4mm; }
+.fo-carta .fo-compromisos-nuevos { margin: 1.5mm 2mm 2mm 7mm; padding-left: 2mm; font-size: 8.3pt; line-height: 1.3; }
+.fo-carta .fo-compromisos-nuevos li { padding: .35mm 0; }
+.fo-carta .fo-firmas-nuevas { display: grid; grid-template-columns: repeat(3,1fr); gap: 7mm; padding: 7mm 2mm 2mm; }
+.fo-carta .fo-firma { font-size: 7.5pt; text-align: center; min-width: 0; }
+.fo-carta .fo-linea-firma { width: 100%; margin: 0; border: 0; border-bottom: 1px solid #526257; text-align: left; }
+.fo-carta .fo-nombre-firma { display: block; width: auto; min-height: 4mm; margin: 1mm 0; font-size: 7.5pt; overflow-wrap: anywhere; }
+@media print { html,body { margin: 0; padding: 0; background: white; } .ficha-oficial.fo-carta { width: 100%; max-width: 100%; } .fo-carta .fo-encabezado,.fo-carta .fo-renglon,.fo-carta .fo-padres,.fo-carta .fo-firmas-nuevas { break-inside: avoid; } .fo-carta .fo-banda { break-after: avoid; } }
